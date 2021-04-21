@@ -31,6 +31,7 @@ The blog post to this image contains excellent details regarding this architectu
 i) Introduce a lambda function to dynamically update the latest data to S3 from AWS Data Exchange each day
 ii) Orchestrate a data pipeline in case there are multiple sources of data and transition data between services automatically
 iii) Have multiple users poll the latest output through SNS and set up an email notification for results
+[Architecture]
 [<img width="642" alt="AWS Data Architecture" src="https://user-images.githubusercontent.com/36125669/115539086-235a9100-a2cf-11eb-9a90-26062dd071db.png">](https://aws.amazon.com/blogs/machine-learning/building-machine-learning-workflows-with-aws-data-exchange-and-amazon-sagemaker/)
 
 
