@@ -11,7 +11,7 @@ Evaluate time series data of S&P 500 Close price through LSTM RNN and explore pr
 [![Made withJupyter](https://img.shields.io/badge/Made%20with-Jupyter-orange?style=for-the-badge&logo=Jupyter)](https://jupyter.org/try)
 
 ## Prerequisite
-Sign-up to AWS free-tier through the console:
+Sign-up to AWS free-tier through the console
 
 [<img width="1414" alt="AWS Sign-up" src="https://user-images.githubusercontent.com/36125669/115541134-5a31a680-a2d1-11eb-8d54-00c6b01cf9d4.png](https://aws.amazon.com/free/)
 
