@@ -26,11 +26,6 @@ iii) Third, it is easy to integrate and set up a notification engine in case we 
 
 AWS is an excellent and leading cloud platform that allows users to build such end-to-end data architectures. The use case described below is an ideal scenario that I would leverage in production for a live project.
 
-ifdef::env-github[]
-image:https://www.youtube.com/watch?v=Lu9QVJ0Rml4]
-endif::[]
+![Uploading 1highlevelarchitecture-1573928431489.png…](https://www.youtube.com/watch?v=Lu9QVJ0Rml4)
 
-ifndef::env-github[]
-video::rAteGra5-xM[youtube]
-endif::[]
 
