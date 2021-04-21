@@ -1,7 +1,7 @@
 # Stock Price Prediction with LSTM in AWS Sagemaker on the Cloud
 
 ## Background
-This is a fun personal project where I wanted to explore some of the math, technical indicators and use deep learning in a cloud native environment to validate this growing hypothesis that machine learning can predict stock prices. For this illustration, I have used the broad market S&P 500 index - however, this project can be readily extended to evaluate other individual or a basket of stocks.
+This is a fun personal project where I wanted to explore some of the math, technical indicators and use deep learning in a cloud native environment to validate the growing hypothesis that machine learning can predict stock prices. For this illustration, I have used the broad market S&P 500 index - however, this project can be readily extended to evaluate other individual or a basket of stocks.
 
 ## Objectives
 Evaluate time series data of S&P 500 Close price through LSTM RNN and explore prediction feasibility for future close price.
@@ -18,7 +18,8 @@ Sign-up to AWS free-tier through the console to access the services described in
 Note: This project can also be built on a local anaconda distribution through Jupyter or another cloud provider. We have used AWS for demonstration only.
 
 ## Table of Contents
-#### [AWS Stack]
+#### [The AWS Stack]
+#### [Data Methodology and Code]
 #### [Technical Indicators]
 #### [Data Wrangling]
 #### [Model Build]
@@ -28,7 +29,7 @@ Note: This project can also be built on a local anaconda distribution through Ju
 ## AWS Stack
 There are many advantages to building a cloud native ML engine for predictions:
 
-i) First, we do not have to worry about consuming processing power from our local network
+i) First, we do not have to worry about consuming processing power from our local drives
 
 ii) Second, we can integrate a data pipeline to build and load data in a more agile manner to handle multiple production scenarios
 
@@ -39,7 +40,7 @@ AWS is an excellent and leading cloud platform that allows users to build such e
 [**The Ideal Production Data Architecture**](https://aws.amazon.com/blogs/machine-learning/building-machine-learning-workflows-with-aws-data-exchange-and-amazon-sagemaker/)
 The blog post contains excellent details regarding an illustrative ML architecture. Additionally, my personal additions to the ideal architecture to make it truly dynamic and user friendly are:
 
-i) Introduce a lambda function to dynamically update the latest data to S3 from AWS Data Exchange each day
+i) Introduce a lambda function to dynamically update the latest data to S3 from AWS Data Exchange subscription each day
 
 ii) Orchestrate a data pipeline in case there are multiple sources of data and transition data between services automatically
 
@@ -47,7 +48,8 @@ iii) Have multiple users poll the latest output through SNS and set up an email 
 
 [<img width="642" alt="AWS Data Architecture" src="https://user-images.githubusercontent.com/36125669/115539086-235a9100-a2cf-11eb-9a90-26062dd071db.png">](https://aws.amazon.com/blogs/machine-learning/building-machine-learning-workflows-with-aws-data-exchange-and-amazon-sagemaker/)
 
-**AWS S3:** Amazon's Simple Storage Service
+### AWS S3: 
+Amazon's Simple Storage Service
 
 S3 is the most fundamental and powerful big data storage solution by AWS in the cloud. The solution can store any structured or unstructured data in several file formats upto a maximum of 5 TB. The current basic set up involves defining a bucket with default encryption to begin our project. 
 
@@ -57,6 +59,7 @@ S3 is the most fundamental and powerful big data storage solution by AWS in the 
 **Step 1:** 
 
 Create Bucket
+
 <img width="1440" alt="Create S3 Bucket 1" src="https://user-images.githubusercontent.com/36125669/115544714-83eccc80-a2d5-11eb-803b-f3d51546640b.png">
 
 **Step 2:**
@@ -73,7 +76,7 @@ Our S3 bucket to store input data from our next step is now available!
 
 </details>
   
-**AWS Data Exchange**
+### AWS Data Exchange
 AWS Data Exchange makes it easy to find, subscribe to, and use third-party data in the cloud. Once subscribed to a data product, you can use the AWS Data Exchange API to load data directly into Amazon S3 and then analyze it with a wide variety of AWS analytics and machine learning services. 
 
 For more information watch the [Youtube](https://www.youtube.com/watch?v=2M7S-rsCgfg&t=45s) video from AWS Data Exchange.
@@ -100,8 +103,8 @@ We can now select the S3 bucket we previously created to export the datasets we 
 
 </details>
 
-**AWS Sagemaker**
-Sagemaker is the powerful ML platform from AWS that can be used to leverage several open source and AWS specific ML packages for cutting-edge predictive solutions. There are a whole host of services and options available as summarized in the diagram with more information to be found on the [AWS Sagemaker Page.](https://aws.amazon.com/sagemaker/)
+### AWS Sagemaker
+Sagemaker is the powerful ML platform from AWS that can be used to leverage several open source and AWS specific ML packages for cutting-edge predictive solutions. There are a host of services and options available as summarized in the diagram with more information to be found on the [AWS Sagemaker Page.](https://aws.amazon.com/sagemaker/)
 
 <img width="1182" alt="Sagemaker Highlights" src="https://user-images.githubusercontent.com/36125669/115550631-a7674580-a2dc-11eb-8f2f-f5f0bcb8490f.png">(https://aws.amazon.com/sagemaker/)
 
@@ -112,6 +115,7 @@ There are several basic set up steps to using Jupyter Notebooks and Tensorflow i
 
 **Step 1:** 
 Search for AWS Sagemaker
+
 <img width="1023" alt="Search Sagemaker" src="https://user-images.githubusercontent.com/36125669/115548591-3757c000-a2da-11eb-972e-439c63450514.png">
 
 **Step 2:** 
@@ -121,14 +125,16 @@ Select Notebook and Notebook Instance from the left hand menu options
 
 **Step 3:** 
 Select Create Notebook
+
 <img width="1129" alt="Create Notebook" src="https://user-images.githubusercontent.com/36125669/115548691-55252500-a2da-11eb-9da5-6e409bf5be50.png">
 
 **Step 4:** 
 Provide a name for your project and select an EC2 instance to deploy your workload: T2 Micro free-tier should be sufficient unless processing GPU instensive ML data
+
 <img width="846" alt="Create Notebook Instance" src="https://user-images.githubusercontent.com/36125669/115548758-6a01b880-a2da-11eb-8e32-a7085e259378.png">
 
 **Step 5:** 
-Select IAM: Either create a new IAM execution role or use an exisiting role you may have created for S3 previously
+Select IAM: Either create a new IAM execution role or use an exisiting role you may have created previously
 <img width="848" alt="Notebook IAM" src="https://user-images.githubusercontent.com/36125669/115548831-80a80f80-a2da-11eb-81b7-7536da2ebee5.png">
 
 **Step 6:** 
@@ -144,6 +150,25 @@ Select Python Instance with Conda Tensorflow package
 <img width="1429" alt="Choose Tensorflow Notebook" src="https://user-images.githubusercontent.com/36125669/115548961-a8977300-a2da-11eb-9b7b-93b03579c1b0.png">
 
 </details>
+
+## Data Methodology and Code
+The python notebooks attached layout the steps to import data and make the necessary transformations at each stage till the final results. For brevity, we will only draw on the main themes and highlight important steps to link it with the larger descriptive summary here.
+
+
+## Technical Indictors
+For a deeper and more intuitive understanding of the data, it is necessary we highlight some of the important technical indicators that are applied in algorithmic trading.
+
+**13 Day Moving Average**
+**30 Day Moving Average**
+**MACD**
+
+Some of the detailed explanations can be found from [AWS Databricks Summit](https://www.youtube.com/watch?v=jlr8QgCxLe4) 
+[<img width="1023" alt="AWS Databricks Summit" src="https://user-images.githubusercontent.com/36125669/115554726-5efe5680-a2e1-11eb-9118-e8a107240fde.png">](https://www.youtube.com/watch?v=jlr8QgCxLe4)
+
+
+Visualization of the S&P 500 Close Price from the FRED data
+<img width="1069" alt="S P 500 Close Plot" src="https://user-images.githubusercontent.com/36125669/115553317-dcc16280-a2df-11eb-8f16-73c3dc260039.png">
+
 
 
 
