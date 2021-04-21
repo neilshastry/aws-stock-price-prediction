@@ -106,7 +106,7 @@ We can now select the S3 bucket we previously created to export the datasets we 
 ### AWS Sagemaker
 Sagemaker is the powerful ML platform from AWS that can be used to leverage several open source and AWS specific ML packages for cutting-edge predictive solutions. There are a host of services and options available as summarized in the diagram with more information to be found on the [AWS Sagemaker Page.](https://aws.amazon.com/sagemaker/)
 
-<img width="1182" alt="Sagemaker Highlights" src="https://user-images.githubusercontent.com/36125669/115550631-a7674580-a2dc-11eb-8f2f-f5f0bcb8490f.png">(https://aws.amazon.com/sagemaker/)
+[<img width="1182" alt="Sagemaker Highlights" src="https://user-images.githubusercontent.com/36125669/115550631-a7674580-a2dc-11eb-8f2f-f5f0bcb8490f.png">](https://aws.amazon.com/sagemaker/)
 
 There are several basic set up steps to using Jupyter Notebooks and Tensorflow in AWS Sagemaker. The path described below is the easiest method from a visual detailing perspective to describe the workflow. Please follow the set up steps for reference.
 
@@ -155,7 +155,7 @@ Select Python Instance with Conda Tensorflow package
 The python notebooks attached layout the steps to import data and make the necessary transformations at each stage till the final results. For brevity, we will only draw on the main themes and highlight important steps to link it with the larger descriptive summary here.
 
 
-## Technical Indictors
+## Technical Indicators
 For a deeper and more intuitive understanding of the data, it is necessary we highlight some of the important technical indicators that are applied in algorithmic trading.
 
 **13 Day Moving Average**
