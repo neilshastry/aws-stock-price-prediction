@@ -15,6 +15,7 @@ Sign-up to AWS free-tier through the console to access the services described in
 
 [<img width="1414" alt="AWS Sign-up" src="https://user-images.githubusercontent.com/36125669/115541657-fcea2500-a2d1-11eb-9054-bc411e8b49ba.png">](https://aws.amazon.com/free/)
 
+Note: This project can also be built on a local anaconda distribution through Jupyter or another cloud provider. We have used AWS for demonstration only.
 
 ## Table of Contents
 #### [AWS Stack]
@@ -25,15 +26,18 @@ Sign-up to AWS free-tier through the console to access the services described in
 #### [Prediction Results]
 
 ## AWS Stack
-There are many advantages to build a cloud native ML engine for predictions:
-i) First, we do not have to worry about processing or consuming data from our local drive
-ii) Second, we can integrate a data pipeline to build and load data in a more agile manner
-iii) Third, it is easy to integrate and set up a notification engine in case we want to automate prediction results and output delivery to users
+There are many advantages to building a cloud native ML engine for predictions:
+
+i) First, we do not have to worry about consuming processing power from our local network
+
+ii) Second, we can integrate a data pipeline to build and load data in a more agile manner to handle multiple production scenarios
+
+iii) Third, it is easy to integrate and set up a notification engine in case we want to automate predictions and output delivery to users
 
 AWS is an excellent and leading cloud platform that allows users to build such end-to-end data architectures. The use case described below is an ideal scenario to leverage in production for a live project.
 
 [**The Ideal Production Data Architecture**](https://aws.amazon.com/blogs/machine-learning/building-machine-learning-workflows-with-aws-data-exchange-and-amazon-sagemaker/)
-The blog post to this image contains excellent details regarding this architecture. Additionally, I would add the following to make it truly dynamic and user friendly:
+The blog post contains excellent details regarding an illustrative ML architecture. Additionally, my personal additions to the ideal architecture to make it truly dynamic and user friendly are:
 
 i) Introduce a lambda function to dynamically update the latest data to S3 from AWS Data Exchange each day
 
@@ -45,7 +49,7 @@ iii) Have multiple users poll the latest output through SNS and set up an email 
 
 **AWS S3:** Amazon's Simple Storage Service
 
-S3 is the most fundamental and powerful big data storage solution by AWS in the cloud. The solution can store any structured or unstructured data in several file formats upto a maximum of 5 TB. The set up involves defining a bucket and IAM policy for secure access. 
+S3 is the most fundamental and powerful big data storage solution by AWS in the cloud. The solution can store any structured or unstructured data in several file formats upto a maximum of 5 TB. The current basic set up involves defining a bucket with default encryption to begin our project. 
 
 **Step 1:** 
 
@@ -62,7 +66,7 @@ Choose encryption type and create bucket
 
 <img width="1440" alt="Create S3 Bucket 3" src="https://user-images.githubusercontent.com/36125669/115545302-3c1a7500-a2d6-11eb-8a95-71809464262e.png">
 
-Our S3 bucket to store data from our next step is now ready!
+Our S3 bucket to store input data from our next step is now available!
 
 **AWS Data Exchange**
 
@@ -82,4 +86,49 @@ The next step is to subscribe to the dataset you selected. Usually, the data is 
 We can now select the S3 bucket we previously created to export the datasets we selected.
 
 <img width="1440" alt="Data Export to S3" src="https://user-images.githubusercontent.com/36125669/115545617-97e4fe00-a2d6-11eb-8710-7a4224d93ee1.png">
+
+**AWS Sagemaker**
+There are several basic set up steps to using Jupyter Notebooks and Tensorflow in AWS Sagemaker. The path described below is the easiest method from a visual detailing perspective to describe the workflow.
+
+**Step 1:** 
+Search for AWS Sagemaker
+<img width="1023" alt="Search Sagemaker" src="https://user-images.githubusercontent.com/36125669/115548591-3757c000-a2da-11eb-972e-439c63450514.png">
+
+**Step 2:** 
+Select Notebook and Notebook Instance from the left hand menu options
+<img width="268" alt="Select Notebook Instance" src="https://user-images.githubusercontent.com/36125669/115548636-476f9f80-a2da-11eb-8f03-49316f63e79f.png">
+
+**Step 3:** 
+Select Create Notebook
+<img width="1129" alt="Create Notebook" src="https://user-images.githubusercontent.com/36125669/115548691-55252500-a2da-11eb-9da5-6e409bf5be50.png">
+
+**Step 4:** 
+Provide a name for your project and select an EC2 instance to deploy your workload: T2 Micro free-tier should be sufficient unless processing GPU instensive ML data
+<img width="846" alt="Create Notebook Instance" src="https://user-images.githubusercontent.com/36125669/115548758-6a01b880-a2da-11eb-8e32-a7085e259378.png">
+
+**Step 5:** 
+Select IAM: Either create a new IAM execution role or use an exisiting role you may have created for S3 previously
+<img width="848" alt="Notebook IAM" src="https://user-images.githubusercontent.com/36125669/115548831-80a80f80-a2da-11eb-81b7-7536da2ebee5.png">
+<img width="864" alt="Create Notebook Final" src="https://user-images.githubusercontent.com/36125669/115548836-8271d300-a2da-11eb-8d16-8981e722b184.png">
+
+**Step 6:** 
+Finally Create Notebook
+<img width="864" alt="Create Notebook Final" src="https://user-images.githubusercontent.com/36125669/115548907-9a495700-a2da-11eb-90bd-994e2e48e651.png">
+
+**Step 7:** 
+Open with Jupyter Lab
+<img width="845" alt="Open with Jupyter Lab" src="https://user-images.githubusercontent.com/36125669/115548953-a6351900-a2da-11eb-9085-dd795373a2a7.png">
+
+**Step 7:** 
+Select Python Instance with Conda Tensorflow package
+<img width="1429" alt="Choose Tensorflow Notebook" src="https://user-images.githubusercontent.com/36125669/115548961-a8977300-a2da-11eb-9b7b-93b03579c1b0.png">
+
+
+
+
+
+
+
+
+
 
