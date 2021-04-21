@@ -26,7 +26,7 @@ iii) Third, it is easy to integrate and set up a notification engine in case we 
 
 AWS is an excellent and leading cloud platform that allows users to build such end-to-end data architectures. The use case described below is an ideal scenario that I would leverage in production for a live project.
 
-![AWS Data Exchange](https://www.youtube.com/watch?v=Lu9QVJ0Rml4)
+![AWS Data Exchange.png](https://www.youtube.com/watch?v=Lu9QVJ0Rml4)
 
 
 
