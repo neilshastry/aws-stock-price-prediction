@@ -26,7 +26,7 @@ iii) Third, it is easy to integrate and set up a notification engine in case we 
 
 AWS is an excellent and leading cloud platform that allows users to build such end-to-end data architectures. The use case described below is an ideal scenario to leverage in production for a live project.
 
-![sagemaker-dataexchange-1](https://user-images.githubusercontent.com/36125669/115538508-8ac41100-a2ce-11eb-80e8-9b9fa3b98695.gif)
+![sagemaker-dataexchange-1.gif](https://aws.amazon.com/blogs/machine-learning/building-machine-learning-workflows-with-aws-data-exchange-and-amazon-sagemaker/)
 
 
 
