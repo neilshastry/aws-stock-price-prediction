@@ -43,7 +43,23 @@ iii) Have multiple users poll the latest output through SNS and set up an email 
 
 [<img width="642" alt="AWS Data Architecture" src="https://user-images.githubusercontent.com/36125669/115539086-235a9100-a2cf-11eb-9a90-26062dd071db.png">](https://aws.amazon.com/blogs/machine-learning/building-machine-learning-workflows-with-aws-data-exchange-and-amazon-sagemaker/)
 
+
+**AWS S3:** Amazon's Simple Storage Service
+
+S3 is the most fundamental and powerful big data storage solution by AWS in the cloud. The solution can store any structured or unstructured data in several file formats upto a maximum of 5 TB. The set up involves defining a bucket and IAM policy for secure access. 
+
+**Step 1:** 
+
+Create Bucket
+<img width="1440" alt="Create S3 Bucket 1" src="https://user-images.githubusercontent.com/36125669/115544714-83eccc80-a2d5-11eb-803b-f3d51546640b.png">
+
+**Step 2:**
+Choose region and set up
+
+<img width="812" alt="AWS Data Exchange Subscribe" src="https://user-images.githubusercontent.com/36125669/115543255-bd243d00-a2d3-11eb-92e1-ae845da8c057.png">
+
 **AWS Data Exchange**
+
 **Step 1:** For our analysis, the first step was to find relevant S&P 500 data on AWS Data Exchange. The close price data of the S&P 500 was readily available from [FRED: The Federal Reserve Bank of St. Louis.](https://www.stlouisfed.org)
 
 [<img width="1440" alt="Data Exchange S P" src="https://user-images.githubusercontent.com/36125669/115542598-01fba400-a2d3-11eb-8127-f4e469c13314.png">](https://fred.stlouisfed.org)
