@@ -90,12 +90,16 @@ We can now select the S3 bucket we previously created to export the datasets we 
 **AWS Sagemaker**
 There are several basic set up steps to using Jupyter Notebooks and Tensorflow in AWS Sagemaker. The path described below is the easiest method from a visual detailing perspective to describe the workflow.
 
+<details>
+<summary>Sagemaker Set Up Steps>
+  
 **Step 1:** 
 Search for AWS Sagemaker
 <img width="1023" alt="Search Sagemaker" src="https://user-images.githubusercontent.com/36125669/115548591-3757c000-a2da-11eb-972e-439c63450514.png">
 
 **Step 2:** 
 Select Notebook and Notebook Instance from the left hand menu options
+
 <img width="268" alt="Select Notebook Instance" src="https://user-images.githubusercontent.com/36125669/115548636-476f9f80-a2da-11eb-8f03-49316f63e79f.png">
 
 **Step 3:** 
@@ -109,7 +113,6 @@ Provide a name for your project and select an EC2 instance to deploy your worklo
 **Step 5:** 
 Select IAM: Either create a new IAM execution role or use an exisiting role you may have created for S3 previously
 <img width="848" alt="Notebook IAM" src="https://user-images.githubusercontent.com/36125669/115548831-80a80f80-a2da-11eb-81b7-7536da2ebee5.png">
-<img width="864" alt="Create Notebook Final" src="https://user-images.githubusercontent.com/36125669/115548836-8271d300-a2da-11eb-8d16-8981e722b184.png">
 
 **Step 6:** 
 Finally Create Notebook
@@ -122,6 +125,9 @@ Open with Jupyter Lab
 **Step 7:** 
 Select Python Instance with Conda Tensorflow package
 <img width="1429" alt="Choose Tensorflow Notebook" src="https://user-images.githubusercontent.com/36125669/115548961-a8977300-a2da-11eb-9b7b-93b03579c1b0.png">
+
+</details>
+
 
 
 
