@@ -51,6 +51,9 @@ iii) Have multiple users poll the latest output through SNS and set up an email 
 
 S3 is the most fundamental and powerful big data storage solution by AWS in the cloud. The solution can store any structured or unstructured data in several file formats upto a maximum of 5 TB. The current basic set up involves defining a bucket with default encryption to begin our project. 
 
+<details>
+<summary>How to set up an S3 Bucket</summary>
+  
 **Step 1:** 
 
 Create Bucket
@@ -68,7 +71,15 @@ Choose encryption type and create bucket
 
 Our S3 bucket to store input data from our next step is now available!
 
+</details>
+  
 **AWS Data Exchange**
+AWS Data Exchange makes it easy to find, subscribe to, and use third-party data in the cloud. Once subscribed to a data product, you can use the AWS Data Exchange API to load data directly into Amazon S3 and then analyze it with a wide variety of AWS analytics and machine learning services. 
+
+For more information watch the [Youtube](https://www.youtube.com/watch?v=2M7S-rsCgfg&t=45s) video from AWS Data Exchange.
+
+<details>
+<summary>How to get data from AWS Data Exchange</summary>
 
 **Step 1:** 
 For our analysis, the first step was to find relevant S&P 500 data on AWS Data Exchange. The close price data of the S&P 500 was readily available from [FRED: The Federal Reserve Bank of St. Louis.](https://www.stlouisfed.org)
@@ -87,12 +98,18 @@ We can now select the S3 bucket we previously created to export the datasets we 
 
 <img width="1440" alt="Data Export to S3" src="https://user-images.githubusercontent.com/36125669/115545617-97e4fe00-a2d6-11eb-8710-7a4224d93ee1.png">
 
+</details>
+
 **AWS Sagemaker**
-There are several basic set up steps to using Jupyter Notebooks and Tensorflow in AWS Sagemaker. The path described below is the easiest method from a visual detailing perspective to describe the workflow.
+Sagemaker is the powerful ML platform from AWS that can be used to leverage several open source and AWS specific ML packages for cutting-edge predictive solutions. There are a whole host of services and options available as summarized in the diagram with more information to be found on the [AWS Sagemaker Page.](https://aws.amazon.com/sagemaker/)
+
+<img width="1182" alt="Sagemaker Highlights" src="https://user-images.githubusercontent.com/36125669/115550631-a7674580-a2dc-11eb-8f2f-f5f0bcb8490f.png">(https://aws.amazon.com/sagemaker/)
+
+There are several basic set up steps to using Jupyter Notebooks and Tensorflow in AWS Sagemaker. The path described below is the easiest method from a visual detailing perspective to describe the workflow. Please follow the set up steps for reference.
 
 <details>
-<summary>Sagemaker Set Up Steps>
-  
+<summary>Sagemaker Set Up Steps</summary>
+
 **Step 1:** 
 Search for AWS Sagemaker
 <img width="1023" alt="Search Sagemaker" src="https://user-images.githubusercontent.com/36125669/115548591-3757c000-a2da-11eb-972e-439c63450514.png">
