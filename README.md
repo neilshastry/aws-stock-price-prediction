@@ -27,7 +27,7 @@ iii) Third, it is easy to integrate and set up a notification engine in case we 
 AWS is an excellent and leading cloud platform that allows users to build such end-to-end data architectures. The use case described below is an ideal scenario to leverage in production for a live project.
 
 **The Ideal Production Data Architecture**
-The blog post to this image contains excellent details regarding this architecture. Additionally, I would add the following to make it truly dynamic and user friendly:
+The blog post to this image contains excellent details regarding this architecture. Additionally, I would add the following to make it truly dynamic and user friendly
 i) Introduce a lambda function to dynamically update the latest data to S3 from AWS Data Exchange each day
 ii) Orchestrate a data pipeline in case there are multiple sources of data and transition data between services automatically
 iii) Have multiple users poll the latest output through SNS and set up an email notification for results
