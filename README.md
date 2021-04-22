@@ -21,10 +21,10 @@ Sign-up to AWS free-tier through the console to access the services described in
 #### [The AWS Stack]
 #### [Data Methodology and Code]
 #### [Technical Indicators]
-#### [Data Wrangling]
-#### [Model Build]
-#### [Some Mathematical Background]
-#### [Prediction Results]
+#### [General Model and Mathematical Foundations]
+#### [LSTM: Absolute Price]
+#### [LSTM: Percent Change in Price]
+#### [Performance Comparison and Conclusion]
 
 ## AWS Stack
 There are many advantages to building a cloud native ML engine for predictions:
@@ -206,8 +206,8 @@ S&P 500 Close Price: Apr-2011 to Apr-2021
 
 ![EMA MACD 2020](https://user-images.githubusercontent.com/36125669/115657581-b5af7300-a369-11eb-8ed6-5fafbe377ed7.jpeg)
 
-
-
+## General Model and Mathematical Foundations
+Before we proceed, it would be useful to highlight the general framework of the model and some mathematical considerations.
 
 
 ## Author
