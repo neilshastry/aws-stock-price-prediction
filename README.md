@@ -15,7 +15,7 @@ Sign-up to AWS free-tier through the console to access the services described in
 
 [<img width="1414" alt="AWS Sign-up" src="https://user-images.githubusercontent.com/36125669/115541657-fcea2500-a2d1-11eb-9054-bc411e8b49ba.png">](https://aws.amazon.com/free/)
 
-Note: This project can also be built on a local anaconda distribution through Jupyter or another cloud provider. We have used AWS for demonstration only.
+**Note:** This project can also be built on a local anaconda distribution through Jupyter or another cloud provider. We have used AWS for demonstration only.
 
 ## Table of Contents
 #### [The AWS Stack]
@@ -154,29 +154,68 @@ Select Python Instance with Conda Tensorflow package
 ## Data Methodology and Code
 The python notebooks attached layout the steps to import data and make the necessary transformations at each stage till the final results. For brevity, we will only draw on the main themes and highlight important steps to link it with the larger descriptive summary here.
 
+Here are some of the starter codes import relevant libraries and the dataset from S3 (reference the python notebooks for more details).
+
+```
+# for sagemaker and iam role
+import boto3 # AWS Python SDK
+from sagemaker import get_execution_role
+role = get_execution_role()
+
+# for tensorflow libraries and modules through sagemaker
+import sagemaker.tensorflow 
+import tensorflow as tf
+from tensorflow import keras
+
+# Import data saved from AWS Data Exchange to S3 bucket
+my_bucket = 'stock-price-predictor' # declare bucket name
+my_file = 'fred-SP500/dataset/fred-sp500.csv' # declare file path with S3 bucket
+
+# file
+data_location = 's3://stock-price-predictor/fred-SP500/dataset/fred-sp500.csv'.format(my_bucket,my_file)
+data = pd.read_csv(data_location)
+data.head()
+
+```
 
 ## Technical Indicators
 For a deeper and more intuitive understanding of the data, it is necessary we highlight some of the important technical indicators that are applied in algorithmic trading.
 
-**13 Day Moving Average**
-**30 Day Moving Average**
-**MACD**
+**Moving Average:** An [exponential moving average (EMA)](https://www.investopedia.com/terms/e/ema.asp) is a type of moving average (MA) that places a greater weight and significance on the most recent data points. The exponential moving average is also referred to as the exponentially weighted moving average. An exponentially weighted moving average reacts more significantly to recent price changes than a simple moving average (SMA), which applies an equal weight to all observations in the period.
 
-Some of the detailed explanations can be found from [AWS Databricks Summit](https://www.youtube.com/watch?v=jlr8QgCxLe4) 
+- **12 Period Moving Average:** Faster moving average characterized by shorter term / retail investors
+
+- **26 Period Moving Average:** Slower moving average that lags based on block trades carried out over time by more institutional investors
+
+**MACD:** [Moving Average Convergence Divergence](https://www.investopedia.com/terms/m/macd.asp) trend-following momentum indicator that shows the relationship between two moving averages of a security’s price. The MACD is calculated by subtracting the 26-period exponential moving average (EMA) from the 12-period EMA.
+
+A more detailed explanation can be found from 
 [<img width="1023" alt="AWS Databricks Summit" src="https://user-images.githubusercontent.com/36125669/115554726-5efe5680-a2e1-11eb-9118-e8a107240fde.png">](https://www.youtube.com/watch?v=jlr8QgCxLe4)
 
-
-Visualization of the S&P 500 Close Price from the FRED data
+**Standard Plot**
+S&P 500 Close Price: Apr-2011 to Apr-2021
 <img width="1069" alt="S P 500 Close Plot" src="https://user-images.githubusercontent.com/36125669/115553317-dcc16280-a2df-11eb-8f16-73c3dc260039.png">
 
+**Standard Plot with EMA and MACD**
+S&P 500 Close Price: Apr-2011 to Apr-2021
+<img width="989" alt="Screenshot 2021-04-22 at 12 20 34 PM" src="https://user-images.githubusercontent.com/36125669/115656245-76802280-a367-11eb-9d54-69bd4c50bd17.png">
+
+**Standard Plot with EMA and MACD**
+S&P 500 Close Price: Apr-2011 to Apr-2021
+<img width="978" alt="EMA MACD 2011" src="https://user-images.githubusercontent.com/36125669/115657577-b516dc80-a369-11eb-8c2f-fe1f6b4759c7.png">
+
+**Theoretical Consideration:** Fromt the plot above we notice that technical indicators over short time horizons tend to mimic and smooth over the general short term buy-sell decisions of investors and follow the general trend line of the underlying series. However, when we look at the chart below between 1-Jan-2020 and 15-Apr-2021 we clearly see the variations in the EMAs through MACD. With the red circles showing a negative reversal in trends and a green circle showing a positive upward trend. This also highlights for future consideration the importance of the most recent data when using RNN - weights get increasingly larger the closer we are to the present - especially while using absolute price for prediction.
+
+![EMA MACD 2020](https://user-images.githubusercontent.com/36125669/115657581-b5af7300-a369-11eb-8ed6-5fafbe377ed7.jpeg)
 
 
 
 
 
+## Author
+Neil Shastry
 
-
-
-
-
-
+## Acknowledgments
+I would sincerely like to acknowledge the references and inspirations for this project across a wide range of sources.
+1. [AWS Databricks Summit](https://www.youtube.com/watch?v=jlr8QgCxLe4) formed a primary reference for this project. While databricks and AWS DeepAR will be used in future projects - this reference is a useful guide for the general framework of time series and data wrangling in AWS
+2. 
