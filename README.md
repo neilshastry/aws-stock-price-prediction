@@ -193,18 +193,16 @@ A more detailed explanation can be found from
 [<img width="1023" alt="AWS Databricks Summit" src="https://user-images.githubusercontent.com/36125669/115554726-5efe5680-a2e1-11eb-9118-e8a107240fde.png">](https://www.youtube.com/watch?v=jlr8QgCxLe4)
 
 **Standard Plot**
+
 S&P 500 Close Price: Apr-2011 to Apr-2021
 <img width="1069" alt="S P 500 Close Plot" src="https://user-images.githubusercontent.com/36125669/115553317-dcc16280-a2df-11eb-8f16-73c3dc260039.png">
 
 **Standard Plot with EMA and MACD**
-S&P 500 Close Price: Apr-2011 to Apr-2021
-<img width="989" alt="Screenshot 2021-04-22 at 12 20 34 PM" src="https://user-images.githubusercontent.com/36125669/115656245-76802280-a367-11eb-9d54-69bd4c50bd17.png">
 
-**Standard Plot with EMA and MACD**
 S&P 500 Close Price: Apr-2011 to Apr-2021
 <img width="978" alt="EMA MACD 2011" src="https://user-images.githubusercontent.com/36125669/115657577-b516dc80-a369-11eb-8c2f-fe1f6b4759c7.png">
 
-**Theoretical Consideration:** Fromt the plot above we notice that technical indicators over short time horizons tend to mimic and smooth over the general short term buy-sell decisions of investors and follow the general trend line of the underlying series. However, when we look at the chart below between 1-Jan-2020 and 15-Apr-2021 we clearly see the variations in the EMAs through MACD. With the red circles showing a negative reversal in trends and a green circle showing a positive upward trend. This also highlights for future consideration the importance of the most recent data when using RNN - weights get increasingly larger the closer we are to the present - especially while using absolute price for prediction.
+**Theoretical Consideration:** From the plot above we notice that technical indicators over long time horizons tend to mimic and smooth over the general short term buy-sell decisions of investors and follow the general trend line of the underlying series. However, when we look at the chart below between 1-Jan-2020 and 15-Apr-2021 we clearly see the variations in the EMAs through MACD. With the red circles showing a negative reversal in trends and a green circle showing a positive upward trend. This also highlights for future consideration the importance of the most recent data when using RNN - weights get increasingly larger the closer we are to the present in a time series - especially while using absolute numbers.
 
 ![EMA MACD 2020](https://user-images.githubusercontent.com/36125669/115657581-b5af7300-a369-11eb-8ed6-5fafbe377ed7.jpeg)
 
