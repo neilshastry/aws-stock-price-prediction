@@ -306,7 +306,7 @@ Both models follow the same time periods:
 1) Single Step Forecast - Predict Next Close Price (16-Apr-2021)
 2) Multi-Step Forecast - Predict Next 6 Days Close Price (16-Apr - 23-Apr -2021)
 
-## [LSTM: Absolute Price]
+## LSTM: Absolute Price
 
 **Model Performance Summary**
 
@@ -328,7 +328,7 @@ Compared to an ideal RSME of < 0.5; this RSME is not the best and highlights the
 We notice that while the overall trend is captured as an generally upward curve in 2021; the order of magnitude is ~1.5 times lower between the the actual and predicted test values.
 
 
-## [LSTM: Percent Change in Price]
+## LSTM: Percent Change in Price
 
 **Model Performance Summary**
 
@@ -341,21 +341,26 @@ rmse
 
 ```
 
-Compared to an ideal RSME of < 0.5; this RSME is not the best and highlights the general random walk nature of predicting stock prices solely based on previous price. While short term technical indicators can be a good measure to trade based on price - they break down in consideration to a multitude of other factors: such as, managmenet, debt, consumer sentiment, etc. over the long-run.
+The RSME on the model built on the log normal adjustment of percent change in price does significantly worse than the one with absolute numbers. The reasons for the overall discrepancy are similar to what we see with the previous model - indicating that even with normalization and stationarity the prediction trend follows a more randow walk trajectory which is unable to be picked up with our deep learning model.
 
 **YTD 15-Apr-2021: Actual v Test Prices**
 
 <img width="1003" alt="PCT Change Train - Test" src="https://user-images.githubusercontent.com/36125669/115993124-f75b4a80-a603-11eb-8807-d593bf70f75a.png">
 
-We notice that while the overall trend is captured as an generally upward curve in 2021; the order of magnitude is ~1.5 times lower between the the actual and predicted test values.
+We notice that while the overall trend is captured as an generally upward curve in 2021 (similar to our previous model); with the numbers consistently lower at each point along the test prediction curve.
 
 
-## [Performance Comparison and Conclusion]
+## Performance Comparison and Conclusion
+
+From the graph below we see that the incorrect way of estimating prices directly of the trend does do better than the percent change model, which consistently not only underestimates the actual trend but also exacerbates it by imputing a higher downward gradient for each subsequent day.
 
 <img width="499" alt="Forecast Predictions Data" src="https://user-images.githubusercontent.com/36125669/115994248-c7627600-a608-11eb-8e22-d61caa2a9371.png">
 
+Overall the methodology for using a percent change mathematically should remain unchanged from a mathematical and fundamental analysis point of view. However, it does show that since forecasting models are sensitive to recent price movements that over short durations they overemphasize recent trends that can skew predictions.
+
 <img width="799" alt="Forecast Predictions Graph" src="https://user-images.githubusercontent.com/36125669/115994250-c92c3980-a608-11eb-97a1-9f514987f2e1.png">
 
+Both models conclusively prove, that deep learning models are not yet at a stage where they can be conclusively used to predict long-term price movements. They may directionally aligned with overall trends but lag actual performance mainly because they are simplistic to include only a univariate approach to price movements. However, over shorter time horizons they may be able to aid technical indicators provided the recent price momentum is not atypically volatile.
 
 ## Author
 Neil Shastry
@@ -364,4 +369,8 @@ Neil Shastry
 I would sincerely like to acknowledge the references and inspirations for this project across a wide range of sources.
 1. [AWS Databricks Summit](https://www.youtube.com/watch?v=jlr8QgCxLe4) formed a primary reference for this project. While databricks and AWS DeepAR will be used in future projects - this reference is a useful guide for the general framework of time series and data wrangling in AWS
 2. Sepp Hochreiter and Juergen Schmidhuber [paper](https://www.bioinf.jku.at/publications/older/2604.pdf) on the Long-Short Term Memory Problem (LSTM).
-3. IBM [blog](https://www.ibm.com/cloud/learn/recurrent-neural-networks) with explanations on RNNs and LSTM
+3. IBM [blog](https://www.ibm.com/cloud/learn/recurrent-neural-networks) with explanations on RNNs and LSTM.
+4. Decision Forest [Youtube](https://www.youtube.com/watch?v=dKBKNOn3gCE&t=607s) channel.
+5. Computer Science [Youtube](https://www.youtube.com/watch?v=QIUxPv5PJOY&t=2234s) channel.
+6. Edureka! [Youtube](https://www.youtube.com/watch?v=lncoLfue_Y4) channel.
+7. [Amazon Web Services](https://aws.amazon.com/free)
