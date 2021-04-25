@@ -206,23 +206,61 @@ S&P 500 Close Price: Apr-2011 to Apr-2021
 
 ![EMA MACD 2020](https://user-images.githubusercontent.com/36125669/115657581-b5af7300-a369-11eb-8ed6-5fafbe377ed7.jpeg)
 
-## General Model and Mathematical Foundations
+## Mathematical Foundations and General Model
+
+#### Mathematical Foundations
 While approaching the stock price prediction problem there are several use cases where the absolute values of the close prices of stocks are used for forecasting. However, from a mathematical perspective this creates relative inconsistencies in prediction and the correct way to analyze and forecast such data is to therefore calculate some relative measure of progress that tend toward the following two key properties:
 
 1) **Normalization:** [Normalization](https://en.wikipedia.org/wiki/Normalization_(statistics)) means adjusting values measured on different scales to a notionally common scale, often prior to averaging. In more complicated cases, normalization may refer to more sophisticated adjustments where the intention is to bring the entire probability distributions of adjusted values into alignment. This is especially required when doing a multi-variate analysis with several variables on different time scales and is also useful when analyzing historical data for forecasting on variables that have seen a significant growth over time, i.e, the S&P 500 prices in the last 10 years.
 
 2) **Stationarity:** A stationary time series is one whose statistical properties such as mean, variance, autocorrelation, etc. are all constant over time. Most statistical forecasting methods are based on the assumption that the time series can be rendered approximately stationary (i.e., "stationarized") through the use of mathematical transformations. More detailed description can be found [here](https://people.duke.edu/~rnau/411diff.htm)
 
-The general mathematical foundations for using a single variable, such as the stock close prices to forecast future price states through a relative metric like differencing (relative change between periods) come under the class of models known as [Autoregressive Integrated Moving Averages](https://en.wikipedia.org/wiki/Autoregressive_integrated_moving_average). 
+The general mathematical foundations for using a single variable, such as the stock close price to forecast future price states through a relative metric like differencing (relative change between periods) comes under the class of models known as [Autoregressive Integrated Moving Averages](https://en.wikipedia.org/wiki/Autoregressive_integrated_moving_average). 
 
 <img width="1418" alt="ARIMA" src="https://user-images.githubusercontent.com/36125669/115989847-ee15b200-a5f2-11eb-95b2-029f4d03ded2.png">
 
-There are several useful statistical benefits for using ARIMA models. However, for our analysis we will try to explore the benefits of RNN's through LSTM. We will try two versions of our model for review: one based on absolute prices and the other adjusted for normalization and stationarity.
+There are several useful statistical benefits for using ARIMA models. However, for our analysis we will try to explore the benefits of RNN's through LSTM. We will try two versions of our model for review: 
+1) Based on **Absolute Prices** and;
+2) Based on the **Percentage Log Normal** adjusted prices for normalization and stationarity.
 
+**Transformations**
 To achieve stationarity and normalization we will follow some of the guidance of this article by [Quantivity](https://quantivity.wordpress.com/2011/02/21/why-log-returns/):
 1) Take the percentage change in price between current and last close.
 2) Do a log transformation of the percent stage assumign log normality for normalization
 
+**MODEL PERFORMANCE: Root Mean Square Error**
+In statistics, the mean squared error (MSE) of an estimator (of a procedure for estimating an unobserved quantity) measures the average of the squares of the errors — that is, the average squared difference between the estimated values and what is estimated. MSE is a risk function, corresponding to the expected value of the squared error loss. The fact that MSE is almost always strictly positive (and not zero) is because of randomness or because the estimator does not account for information that could produce a more accurate estimate.
+
+RMSE is the square root of the MSE calculated.
+
+**Graphical Plot: Highlighting distance of individual points from the mean**
+<img width="791" alt="MSE Graph" src="https://user-images.githubusercontent.com/36125669/115991395-c0346b80-a5fa-11eb-9ad3-cffbeab3a2e3.png">
+
+**Mathematical Formula: RSME**
+<img width="500" alt="RMSE Formula" src="https://user-images.githubusercontent.com/36125669/115991532-79934100-a5fb-11eb-926e-4dec0757dc29.png">
+
+We will use this metric to evaluate the outcomes of both our models
+
+#### General Model: LSTM Recurrent Neural Network (RNN)
+A recurrent neural network (RNN) is a type of artificial neural network which uses sequential data or time series data. These deep learning algorithms are commonly used for ordinal or temporal problems, such as language translation, natural language processing (NLP), speech recognition, and image captioning; they are incorporated into popular applications such as Siri, voice search, and Google Translate. 
+
+Like feedforward and convolutional neural networks (CNNs), recurrent neural networks utilize training data to learn. They are distinguished by their “memory” as they take information from prior inputs to influence the current input and output. While traditional deep neural networks assume that inputs and outputs are independent of each other, the output of recurrent neural networks depend on the prior elements within the sequence. While future events would also be helpful in determining the output of a given sequence, unidirectional recurrent neural networks cannot account for these events in their predictions.
+
+<img width="512" alt="RNN" src="https://user-images.githubusercontent.com/36125669/115990962-ac880580-a5f8-11eb-9341-3123086e2eec.png">
+
+**The Problem, Short Term Memory**
+Recurrent Neural Networks however suffer from short-term memory. If a sequence is long enough, they’ll have a hard time carrying information from earlier time steps to later ones. So if you are trying to process a paragraph of text to do predictions, RNN’s may leave out important information from the beginning.
+
+During back propagation, recurrent neural networks suffer from the vanishing gradient problem. Gradients are values used to update a neural networks weights. The vanishing gradient problem is when the gradient shrinks as it back propagates through time. If a gradient value becomes extremely small, it doesn’t contribute too much learning.
+
+**What is an LSTM?**
+This is a popular RNN architecture, which was introduced by Sepp Hochreiter and Juergen Schmidhuber as a solution to vanishing gradient problem. In their [paper](https://www.bioinf.jku.at/publications/older/2604.pdf) (PDF, 388 KB), they work to address the problem of long-term dependencies. That is, if the previous state that is influencing the current prediction is not in the recent past, the RNN model may not be able to accurately predict the current state. 
+
+As an example, let’s say we wanted to predict the italicized words in following, “Alice is allergic to nuts. She can’t eat peanut butter.” 
+The context of a nut allergy can help us anticipate that the food that cannot be eaten contains nuts. However, if that context was a few sentences prior, then it would make it difficult, or even impossible, for the RNN to connect the information. 
+To remedy this, LSTMs have “cells” in the hidden layers of the neural network, which have three gates–an input gate, an output gate, and a forget gate. These gates control the flow of information which is needed to predict the output in the network.  For example, if gender pronouns, such as “she”, was repeated multiple times in prior sentences, you may exclude that from the cell state.
+
+Check out [Youtube](https://www.youtube.com/watch?v=8HyCNIVRbSU&t=61s) video from ['The A.I. Hacker - Michael Phi'](https://www.youtube.com/channel/UCYpBgT4riB-VpsBBBQkblqQ) for more.
 
 
 
@@ -232,4 +270,5 @@ Neil Shastry
 ## Acknowledgments
 I would sincerely like to acknowledge the references and inspirations for this project across a wide range of sources.
 1. [AWS Databricks Summit](https://www.youtube.com/watch?v=jlr8QgCxLe4) formed a primary reference for this project. While databricks and AWS DeepAR will be used in future projects - this reference is a useful guide for the general framework of time series and data wrangling in AWS
-2. 
+2. Sepp Hochreiter and Juergen Schmidhuber [paper](https://www.bioinf.jku.at/publications/older/2604.pdf) on the Long-Short Term Memory Problem (LSTM).
+3. IBM [blog](https://www.ibm.com/cloud/learn/recurrent-neural-networks) with explanations on RNNs and LSTM
