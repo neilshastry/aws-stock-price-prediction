@@ -18,12 +18,12 @@ Sign-up to AWS free-tier through the console to access the services described in
 **Note:** This project can also be built on a local anaconda distribution through Jupyter or another cloud provider. We have used AWS for demonstration only.
 
 ## Table of Contents
-#### [The AWS Stack](#the-aws-stack-1)
+#### [AWS Stack](#aws-stack-1)
 #### [Data Methodology and Code](#data-methodology-and-code-1)
 #### [Technical Indicators](#technical-indicators-1)
 #### [General Model and Mathematical Foundations](#general-model-and-mathematical-foundations-1)
-#### [LSTM: Absolute Price](#lstm:-absolute-price-1)
-#### [LSTM: Percent Change in Price](#lstm:-percent-change-in-price-1)
+#### [LSTM: Absolute Price](#lstm-absolute-price-1)
+#### [LSTM: Percent Change in Price](#lstm-percent-change-in-price-1)
 #### [Performance Comparison and Conclusion](#performance-comparison-and-conclusion-1)
 
 ## AWS Stack
