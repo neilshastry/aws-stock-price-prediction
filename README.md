@@ -276,7 +276,7 @@ Our model has the following features:
 1) Two layer LSTM Model
 2) Each layer has 50 neurons
 3) Dropout of 0.2 (20%) to prevent overfitting at each LSTM layer
-4) Dense layer with 30 neurons followed by single neuron dense output layer
+4) Dense layer with 25 neurons followed by single neuron dense output layer
 5) **Optimizer:** [Adam](https://towardsdatascience.com/adam-latest-trends-in-deep-learning-optimization-6be9a291375c) is an optimization algorithm used instead of the classical [stochastic gradient](https://en.wikipedia.org/wiki/Stochastic_gradient_descent) descent procedure to update network weights iterative based in training data.
 
 ```
@@ -293,7 +293,7 @@ model.add(LSTM(units = 50, return_sequences = False))
 model.add(Dropout(0.2))
               
 #Adding the output layer
-model.add(Dense(30))
+model.add(Dense(25))
 model.add(Dense(1))
 ```
 
@@ -311,7 +311,7 @@ Both models follow the same time periods:
 **Model Performance Summary**
 
 **Root Mean Square Error**
-**RSME:** 28.48
+**RSME:** 40.66679577303614
 
 ```
 rmse = np.sqrt(np.mean(testPredict - real_stock_price)**2)
@@ -323,9 +323,10 @@ Compared to an ideal RSME of < 0.5; this RSME is not the best and highlights the
 
 **YTD 15-Apr-2021: Actual v Test Prices**
 
-<img width="1013" alt="Absolute Train-Test" src="https://user-images.githubusercontent.com/36125669/115992641-46ec4700-a601-11eb-9232-9813a09aa30f.png">
+<img width="1000" alt="Absolute Change Train - Test" src="https://user-images.githubusercontent.com/36125669/116000933-c7706f00-a624-11eb-9d7d-2e44dfee507d.png">
 
-We notice that while the overall trend is captured as an generally upward curve in 2021; the order of magnitude is ~1.5 times lower between the the actual and predicted test values.
+
+We notice that while the overall trend is captured as an generally upward curve in 2021; which consistently overshoots peaks along the non-stationary upward data series.
 
 
 ## LSTM: Percent Change in Price
@@ -333,7 +334,7 @@ We notice that while the overall trend is captured as an generally upward curve 
 **Model Performance Summary**
 
 **Root Mean Square Error**
-**RSME:** 28.48
+**RSME:** 25.510166107130612
 
 ```
 rmse = np.sqrt(np.mean(testPredict - real_stock_price)**2)
@@ -341,26 +342,29 @@ rmse
 
 ```
 
-The RSME on the model built on the log normal adjustment of percent change in price does significantly worse than the one with absolute numbers. The reasons for the overall discrepancy are similar to what we see with the previous model - indicating that even with normalization and stationarity the prediction trend follows a more randow walk trajectory which is unable to be picked up with our deep learning model.
+The RSME of the model built on the log normal adjustment of percent change in price does significantly better than the one with absolute numbers. The reasons for the overall discrepancy are similar to what we see with the previous model - indicating that even with normalization and stationarity the prediction trend follows a more randow walk trajectory which is unable to be picked up with our deep learning model.
 
 **YTD 15-Apr-2021: Actual v Test Prices**
 
-<img width="1003" alt="PCT Change Train - Test" src="https://user-images.githubusercontent.com/36125669/115993124-f75b4a80-a603-11eb-8807-d593bf70f75a.png">
+<img width="1020" alt="PCT Change Train - Test" src="https://user-images.githubusercontent.com/36125669/116000951-d6efb800-a624-11eb-9853-6adf4bcafc62.png">
+
 
 We notice that while the overall trend is captured as an generally upward curve in 2021 (similar to our previous model); with the numbers consistently lower at each point along the test prediction curve.
 
 
 ## Performance Comparison and Conclusion
 
-From the graph below we see that the incorrect way of estimating prices directly of the trend does do better than the percent change model, which consistently not only underestimates the actual trend but also exacerbates it by imputing a higher downward gradient for each subsequent day.
+**16-Apr - 23-Apr -2021: Actual v Prediction**
 
-<img width="499" alt="Forecast Predictions Data" src="https://user-images.githubusercontent.com/36125669/115994248-c7627600-a608-11eb-8e22-d61caa2a9371.png">
+From the graph below we see that the incorrect way of estimating prices directly of the prices does not do better than the percent change model, consistently not overestimates the actual trend and exacerbates it by imputing a higher upward gradient for each subsequent day.
 
-Overall the methodology for using a percent change mathematically should remain unchanged from a mathematical and fundamental analysis point of view. However, it does show that since forecasting models are sensitive to recent price movements that over short durations they overemphasize recent trends that can skew predictions.
+<img width="788" alt="Forecast Predictions Graph" src="https://user-images.githubusercontent.com/36125669/116001113-89277f80-a625-11eb-8f66-42dab47a19df.png">
 
-<img width="799" alt="Forecast Predictions Graph" src="https://user-images.githubusercontent.com/36125669/115994250-c92c3980-a608-11eb-97a1-9f514987f2e1.png">
+Overall the methodology for using a percent change should remain unchanged from a mathematical and fundamental analysis point of view. However, it does show that since forecasting models are sensitive to recent price movements that over short durations they overemphasize recent trends that can skew predictions.
 
-Both models conclusively prove, that deep learning models are not yet at a stage where they can be conclusively used to predict long-term price movements. They may directionally aligned with overall trends but lag actual performance mainly because they are simplistic to include only a univariate approach to price movements. However, over shorter time horizons they may be able to aid technical indicators provided the recent price momentum is not atypically volatile.
+<img width="492" alt="Forecast Predictions Data" src="https://user-images.githubusercontent.com/36125669/116001117-8c227000-a625-11eb-93b6-a72f113b603f.png">
+
+Both models conclusively prove, that deep learning models may not be at a stage where they can be conclusively used to predict long-term price movements based on price alone. They may be directionally aligned with the overall trend but lag actual performance mainly because they are simplistic to include only a univariate approach to price movements and suffer from autocorrelation. However, over shorter time horizons they may be able to aid technical indicators provided the recent price momentum is not atypically volatile.
 
 ## Author
 Neil Shastry
