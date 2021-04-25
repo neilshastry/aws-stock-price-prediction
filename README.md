@@ -219,7 +219,7 @@ The general mathematical foundations for using a single variable, such as the st
 
 <img width="1418" alt="ARIMA" src="https://user-images.githubusercontent.com/36125669/115989847-ee15b200-a5f2-11eb-95b2-029f4d03ded2.png">
 
-There are several useful statistical benefits for using ARIMA models. However, for our analysis we will try to explore the benefits of RNN's through LSTM. We will try two versions of our model for review: 
+There are several useful statistical benefits for using ARIMA models. However, for our analysis we will try to explore the benefits of RNN's through LSTM on two versions of our model: 
 1) Based on **Absolute Prices** and;
 2) Based on the **Percentage Log Normal** adjusted prices for normalization and stationarity.
 
@@ -227,6 +227,9 @@ There are several useful statistical benefits for using ARIMA models. However, f
 To achieve stationarity and normalization we will follow some of the guidance of this article by [Quantivity](https://quantivity.wordpress.com/2011/02/21/why-log-returns/):
 1) Take the percentage change in price between current and last close.
 2) Do a log transformation of the percent stage assumign log normality for normalization
+
+The normalization and graph after applying the log transformation on the percent change does not result in drastic changes except smoothing and rounding some of the values by a few decimal places.
+<img width="964" alt="Log Normality Graph" src="https://user-images.githubusercontent.com/36125669/115992706-a2b6d000-a601-11eb-9c44-36ce54751900.png">
 
 **MODEL PERFORMANCE: Root Mean Square Error**
 
@@ -303,9 +306,12 @@ Both models follow the same time periods:
 1) Single Step Forecast - Predict Next Close Price (16-Apr-2021)
 2) Multi-Step Forecast - Predict Next 6 Days Close Price (16-Apr - 23-Apr -2021)
 
-#### [LSTM: Absolute Price]
+## [LSTM: Absolute Price]
 
 **Model Performance Summary**
+
+**Root Mean Square Error**
+**RSME:** 28.48
 
 ```
 rmse = np.sqrt(np.mean(testPredict - real_stock_price)**2)
@@ -313,9 +319,21 @@ rmse
 
 ```
 
-#### [LSTM: Percent Change in Price]
+Compared to an ideal RSME of < 0.5; this RSME is not the best and highlights the general random walk nature of predicting stock prices solely based on previous price. While short term technical indicators can be a good measure to trade based on price - they break down in consideration to a multitude of other factors: such as, managmenet, debt, consumer sentiment, etc. over the long-run.
+
+**YTD 15-Apr-2021: Actual v Test Prices**
+
+<img width="1013" alt="Absolute Train-Test" src="https://user-images.githubusercontent.com/36125669/115992641-46ec4700-a601-11eb-9232-9813a09aa30f.png">
+
+We notice that while the overall trend is captured as an generally upward curve in 2021; the order of magnitude is ~1.5 times lower between the the actual and predicted test values.
+
+
+## [LSTM: Percent Change in Price]
 
 **Model Performance Summary**
+
+**Root Mean Square Error**
+**RSME:** 28.48
 
 ```
 rmse = np.sqrt(np.mean(testPredict - real_stock_price)**2)
@@ -323,8 +341,20 @@ rmse
 
 ```
 
-#### [Performance Comparison and Conclusion]
+Compared to an ideal RSME of < 0.5; this RSME is not the best and highlights the general random walk nature of predicting stock prices solely based on previous price. While short term technical indicators can be a good measure to trade based on price - they break down in consideration to a multitude of other factors: such as, managmenet, debt, consumer sentiment, etc. over the long-run.
 
+**YTD 15-Apr-2021: Actual v Test Prices**
+
+<img width="1003" alt="PCT Change Train - Test" src="https://user-images.githubusercontent.com/36125669/115993124-f75b4a80-a603-11eb-8807-d593bf70f75a.png">
+
+We notice that while the overall trend is captured as an generally upward curve in 2021; the order of magnitude is ~1.5 times lower between the the actual and predicted test values.
+
+
+## [Performance Comparison and Conclusion]
+
+<img width="499" alt="Forecast Predictions Data" src="https://user-images.githubusercontent.com/36125669/115994248-c7627600-a608-11eb-8e22-d61caa2a9371.png">
+
+<img width="799" alt="Forecast Predictions Graph" src="https://user-images.githubusercontent.com/36125669/115994250-c92c3980-a608-11eb-97a1-9f514987f2e1.png">
 
 
 ## Author
