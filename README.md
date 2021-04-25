@@ -268,6 +268,40 @@ To remedy this, LSTMs have “cells” in the hidden layers of the neural networ
 
 Check out [Youtube](https://www.youtube.com/watch?v=8HyCNIVRbSU&t=61s) video from ['The A.I. Hacker - Michael Phi'](https://www.youtube.com/channel/UCYpBgT4riB-VpsBBBQkblqQ) for more.
 
+**Model Highlights**
+Our model has the following features:
+1) Two layer LSTM Model
+2) Each layer has 50 neurons
+3) Dropout of 0.2 (20%) to prevent overfitting at each LSTM layer
+4) Dense layer with 30 neurons followed by single neuron dense output layer
+
+```
+#Initializing the RNN
+
+model = Sequential()
+
+#Adding the first LSTM layer and some Dropout Regularization
+model.add(LSTM(units = 50, return_sequences = True, input_shape=(Xtrain.shape[1], Xtrain.shape[2])))
+model.add(Dropout(0.2))
+              
+#Adding a second LSTM layer and some Dropout Regularization
+model.add(LSTM(units = 50, return_sequences = False))
+model.add(Dropout(0.2))
+              
+#Adding the output layer
+model.add(Dense(30))
+model.add(Dense(1))
+
+```
+
+**Model Time Period**
+Both models follow the same time periods:
+1) Training Set - Apr 2011 - Dec 2020
+2) Test Set - YTD 15-Apr-2021
+
+**Forecast Outputs**
+1) Single Step Forecast - Predict Next Close Price (16-Apr-2021)
+2) Multi-Step Forecast - Predict Next 6 Days Close Price (16-Apr - 23-Apr -2021)
 
 #### [LSTM: Absolute Price]
 
