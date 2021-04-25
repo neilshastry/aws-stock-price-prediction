@@ -274,6 +274,7 @@ Our model has the following features:
 2) Each layer has 50 neurons
 3) Dropout of 0.2 (20%) to prevent overfitting at each LSTM layer
 4) Dense layer with 30 neurons followed by single neuron dense output layer
+5) **Optimizer:** [Adam](https://towardsdatascience.com/adam-latest-trends-in-deep-learning-optimization-6be9a291375c) is an optimization algorithm used instead of the classical [stochastic gradient](https://en.wikipedia.org/wiki/Stochastic_gradient_descent) descent procedure to update network weights iterative based in training data.
 
 ```
 #Initializing the RNN
@@ -291,7 +292,6 @@ model.add(Dropout(0.2))
 #Adding the output layer
 model.add(Dense(30))
 model.add(Dense(1))
-
 ```
 
 **Model Time Period**
@@ -305,11 +305,26 @@ Both models follow the same time periods:
 
 #### [LSTM: Absolute Price]
 
+**Model Performance Summary**
+
+```
+rmse = np.sqrt(np.mean(testPredict - real_stock_price)**2)
+rmse
+
+```
 
 #### [LSTM: Percent Change in Price]
 
+**Model Performance Summary**
+
+```
+rmse = np.sqrt(np.mean(testPredict - real_stock_price)**2)
+rmse
+
+```
 
 #### [Performance Comparison and Conclusion]
+
 
 
 ## Author
