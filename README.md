@@ -18,13 +18,13 @@ Sign-up to AWS free-tier through the console to access the services described in
 **Note:** This project can also be built on a local anaconda distribution through Jupyter or another cloud provider. We have used AWS for demonstration only.
 
 ## Table of Contents
-#### [The AWS Stack]
-#### [Data Methodology and Code]
-#### [Technical Indicators]
-#### [General Model and Mathematical Foundations]
-#### [LSTM: Absolute Price]
-#### [LSTM: Percent Change in Price]
-#### [Performance Comparison and Conclusion]
+#### [The AWS Stack](#the-aws-stack-1)
+#### [Data Methodology and Code](#data-methodology-and-code-1)
+#### [Technical Indicators](#technical-indicators-1)
+#### [General Model and Mathematical Foundations](#general-model-and-mathematical-foundations-1)
+#### [LSTM: Absolute Price](#lstm:-absolute-price-1)
+#### [LSTM: Percent Change in Price](#lstm:-percent-change-in-price-1)
+#### [Performance Comparison and Conclusion](#performance-comparison-and-conclusion-1)
 
 ## AWS Stack
 There are many advantages to building a cloud native ML engine for predictions:
@@ -229,19 +229,23 @@ To achieve stationarity and normalization we will follow some of the guidance of
 2) Do a log transformation of the percent stage assumign log normality for normalization
 
 **MODEL PERFORMANCE: Root Mean Square Error**
+
 In statistics, the mean squared error (MSE) of an estimator (of a procedure for estimating an unobserved quantity) measures the average of the squares of the errors — that is, the average squared difference between the estimated values and what is estimated. MSE is a risk function, corresponding to the expected value of the squared error loss. The fact that MSE is almost always strictly positive (and not zero) is because of randomness or because the estimator does not account for information that could produce a more accurate estimate.
 
 RMSE is the square root of the MSE calculated.
 
 **Graphical Plot: Highlighting distance of individual points from the mean**
+
 <img width="791" alt="MSE Graph" src="https://user-images.githubusercontent.com/36125669/115991395-c0346b80-a5fa-11eb-9ad3-cffbeab3a2e3.png">
 
 **Mathematical Formula: RSME**
+
 <img width="500" alt="RMSE Formula" src="https://user-images.githubusercontent.com/36125669/115991532-79934100-a5fb-11eb-926e-4dec0757dc29.png">
 
 We will use this metric to evaluate the outcomes of both our models
 
 #### General Model: LSTM Recurrent Neural Network (RNN)
+
 A recurrent neural network (RNN) is a type of artificial neural network which uses sequential data or time series data. These deep learning algorithms are commonly used for ordinal or temporal problems, such as language translation, natural language processing (NLP), speech recognition, and image captioning; they are incorporated into popular applications such as Siri, voice search, and Google Translate. 
 
 Like feedforward and convolutional neural networks (CNNs), recurrent neural networks utilize training data to learn. They are distinguished by their “memory” as they take information from prior inputs to influence the current input and output. While traditional deep neural networks assume that inputs and outputs are independent of each other, the output of recurrent neural networks depend on the prior elements within the sequence. While future events would also be helpful in determining the output of a given sequence, unidirectional recurrent neural networks cannot account for these events in their predictions.
@@ -249,11 +253,13 @@ Like feedforward and convolutional neural networks (CNNs), recurrent neural netw
 <img width="512" alt="RNN" src="https://user-images.githubusercontent.com/36125669/115990962-ac880580-a5f8-11eb-9341-3123086e2eec.png">
 
 **The Problem, Short Term Memory**
+
 Recurrent Neural Networks however suffer from short-term memory. If a sequence is long enough, they’ll have a hard time carrying information from earlier time steps to later ones. So if you are trying to process a paragraph of text to do predictions, RNN’s may leave out important information from the beginning.
 
 During back propagation, recurrent neural networks suffer from the vanishing gradient problem. Gradients are values used to update a neural networks weights. The vanishing gradient problem is when the gradient shrinks as it back propagates through time. If a gradient value becomes extremely small, it doesn’t contribute too much learning.
 
 **What is an LSTM?**
+
 This is a popular RNN architecture, which was introduced by Sepp Hochreiter and Juergen Schmidhuber as a solution to vanishing gradient problem. In their [paper](https://www.bioinf.jku.at/publications/older/2604.pdf) (PDF, 388 KB), they work to address the problem of long-term dependencies. That is, if the previous state that is influencing the current prediction is not in the recent past, the RNN model may not be able to accurately predict the current state. 
 
 As an example, let’s say we wanted to predict the italicized words in following, “Alice is allergic to nuts. She can’t eat peanut butter.” 
@@ -262,6 +268,14 @@ To remedy this, LSTMs have “cells” in the hidden layers of the neural networ
 
 Check out [Youtube](https://www.youtube.com/watch?v=8HyCNIVRbSU&t=61s) video from ['The A.I. Hacker - Michael Phi'](https://www.youtube.com/channel/UCYpBgT4riB-VpsBBBQkblqQ) for more.
 
+
+#### [LSTM: Absolute Price]
+
+
+#### [LSTM: Percent Change in Price]
+
+
+#### [Performance Comparison and Conclusion]
 
 
 ## Author
