@@ -202,12 +202,28 @@ S&P 500 Close Price: Apr-2011 to Apr-2021
 S&P 500 Close Price: Apr-2011 to Apr-2021
 <img width="978" alt="EMA MACD 2011" src="https://user-images.githubusercontent.com/36125669/115657577-b516dc80-a369-11eb-8c2f-fe1f6b4759c7.png">
 
-**Theoretical Consideration:** From the plot above we notice that technical indicators over long time horizons tend to mimic and smooth over the general short term buy-sell decisions of investors and follow the general trend line of the underlying series. However, when we look at the chart below between 1-Jan-2020 and 15-Apr-2021 we clearly see the variations in the EMAs through MACD. With the red circles showing a negative reversal in trends and a green circle showing a positive upward trend. This also highlights for future consideration the importance of the most recent data when using RNN - weights get increasingly larger the closer we are to the present in a time series - especially while using absolute numbers.
+**Theoretical Consideration:** From the plot above we notice that technical indicators over long time horizons tend to be stationary (a concept we will review below) and tend to influence long term buy-sell decisions less from the standpoint of technical indicators. However, when we look at the chart below between 1-Jan-2020 and 15-Apr-2021 we clearly see the variations in the EMAs through MACD. With the red circles showing a negative reversal in trends and a green circle showing a positive upward trend. This also highlights for future consideration the importance of the most recent data when using RNN - weights get increasingly larger the closer we are to the present in a time series - especially while using absolute numbers.
 
 ![EMA MACD 2020](https://user-images.githubusercontent.com/36125669/115657581-b5af7300-a369-11eb-8ed6-5fafbe377ed7.jpeg)
 
 ## General Model and Mathematical Foundations
-Before we proceed, it would be useful to highlight the general framework of the model and some mathematical considerations.
+While approaching the stock price prediction problem there are several use cases where the absolute values of the close prices of stocks are used for forecasting. However, from a mathematical perspective this creates relative inconsistencies in prediction and the correct way to analyze and forecast such data is to therefore calculate some relative measure of progress that tend toward the following two key properties:
+
+1) **Normalization:** [Normalization](https://en.wikipedia.org/wiki/Normalization_(statistics)) means adjusting values measured on different scales to a notionally common scale, often prior to averaging. In more complicated cases, normalization may refer to more sophisticated adjustments where the intention is to bring the entire probability distributions of adjusted values into alignment. This is especially required when doing a multi-variate analysis with several variables on different time scales and is also useful when analyzing historical data for forecasting on variables that have seen a significant growth over time, i.e, the S&P 500 prices in the last 10 years.
+
+2) **Stationarity:** A stationary time series is one whose statistical properties such as mean, variance, autocorrelation, etc. are all constant over time. Most statistical forecasting methods are based on the assumption that the time series can be rendered approximately stationary (i.e., "stationarized") through the use of mathematical transformations. More detailed description can be found [here](https://people.duke.edu/~rnau/411diff.htm)
+
+The general mathematical foundations for using a single variable, such as the stock close prices to forecast future price states through a relative metric like differencing (relative change between periods) come under the class of models known as [Autoregressive Integrated Moving Averages](https://en.wikipedia.org/wiki/Autoregressive_integrated_moving_average). 
+
+<img width="1418" alt="ARIMA" src="https://user-images.githubusercontent.com/36125669/115989847-ee15b200-a5f2-11eb-95b2-029f4d03ded2.png">
+
+There are several useful statistical benefits for using ARIMA models. However, for our analysis we will try to explore the benefits of RNN's through LSTM. We will try two versions of our model for review: one based on absolute prices and the other adjusted for normalization and stationarity.
+
+To achieve stationarity and normalization we will follow some of the guidance of this article by [Quantivity](https://quantivity.wordpress.com/2011/02/21/why-log-returns/):
+1) Take the percentage change in price between current and last close.
+2) Do a log transformation of the percent stage assumign log normality for normalization
+
+
 
 
 ## Author
