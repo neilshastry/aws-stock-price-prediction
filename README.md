@@ -364,7 +364,7 @@ Overall the methodology for using a percent change should remain unchanged from 
 
 <img width="492" alt="Forecast Predictions Data" src="https://user-images.githubusercontent.com/36125669/116001117-8c227000-a625-11eb-93b6-a72f113b603f.png">
 
-Both models conclusively prove, that deep learning models may not be at a stage where they can be conclusively used to predict long-term price movements based on price alone. They may be directionally aligned with the overall trend but lag actual performance mainly because they are simplistic to include only a univariate approach to price movements and suffer from autocorrelation. However, over shorter time horizons they may be able to aid technical indicators provided the recent price momentum is not atypically volatile.
+Both models show that deep learning may not be at a stage where they can be conclusively used to predict movements based on a single variable like price alone. They may be directionally aligned with the overall trend but lag actual performance mainly because they are simplistic to include only a univariate approach to price movements and suffer from autocorrelation. However, over shorter time horizons (hourly or within a day) they may be able to aid technical indicators provided the recent price momentum is not atypically volatile.
 
 ## Author
 Neil Shastry
